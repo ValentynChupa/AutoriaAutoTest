@@ -37,7 +37,7 @@ public class MainPageTest extends BaseSeleniumTest {
 
         as.capcha_Button();
 
-        as.upPriceSet();
+        as.upPriceSet("1000");
 
         String getLink= new AdvancedSearch().list_of_cars().getCurrentURL();
 
