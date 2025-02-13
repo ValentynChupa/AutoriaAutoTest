@@ -1,50 +1,48 @@
 package Test;
 
 import Avtoria.AdvancedSearch;
-import Avtoria.ListOfCars;
+import Avtoria.LoginPage;
 import Avtoria.MainPage;
 import core.BaseSeleniumTest;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class MainPageTest extends BaseSeleniumTest {
-    @Test//Advanced search testing if after click on Advanced search user is redirected to the right endpoint
-    public void check_redirect_advanced_search() {
 
-        MainPage MP = new MainPage();
+    @Test
+    public void checkRedirectToAdvancedSearch() {
+        MainPage mainPage = new MainPage(driver);
 
-        String resultPage = MP
-                .advanced_search()
+        String resultPage = mainPage
+                .clickAdvancedSearch()
                 .getCurrentURL();
 
-        Assert.assertEquals("https://auto.ria.com/uk/advanced-search/?category_id=1", resultPage);
+        Assert.assertEquals(
+                "https://auto.ria.com/uk/advanced-search/?category_id=1",
+                resultPage
+        );
     }
-    @Test//
-    public void check_login_page(){
 
-        MainPage MP = new MainPage();
+    @Test
+    public void checkFillForm(){
+        AdvancedSearch advencedSearch = new MainPage(driver).clickAdvancedSearch();
+        advencedSearch.capchaButtonClick();
+        advencedSearch.upPriceSet("1000");
 
-        String loginUrl= MP
-                .login()
+        String advancetSearchUrl= new AdvancedSearch(driver)
+                .listOfCarsClick()
                 .getCurrentURL();
 
-        Assert.assertEquals("https://auto.ria.com/uk/login.html",loginUrl);
+        Assert.assertEquals(
+                "https://auto.ria.com/uk/advanced-search/?categories.main.id=1&indexName=auto,order_auto,newauto_search",
+                advancetSearchUrl
+        );
     }
+
     @Test
-    public void fill_search_form(){
-
-        AdvancedSearch as = new MainPage().advanced_search();
-
-        as.capcha_Button();
-
-        as.upPriceSet("1000");
-
-        String getLink= new AdvancedSearch().list_of_cars().getCurrentURL();
-
-        Assert.assertEquals("https://auto.ria.com/uk/advanced-search/?categories.main.id=1&indexName=auto,order_auto,newauto_search",getLink);
-    }
-    @Test
-    public void login_page(){
-
+    public void loginAtemp(){
+       LoginPage loginPage = new MainPage(driver).clickLoginButton();
+       loginPage.capchaButtonClick();
+       loginPage.fillEmailField();
     }
 }

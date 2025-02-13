@@ -1,6 +1,7 @@
 package Avtoria;
 
 import core.BaseSeleniumPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,36 +12,29 @@ import java.time.Duration;
 
 public class AdvancedSearch extends BaseSeleniumPage {
 
-    public AdvancedSearch() {
-        PageFactory.initElements(driver,this);
-
+    public AdvancedSearch(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//*[@id=\"gdpr-notifier\"]/div[1]/div[2]/label[1]")
     private WebElement capchaButton;
 
     @FindBy(xpath = "//*[@id=\"at_price-to\"]")
-    private WebElement up_price;
+    private WebElement upPrice;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[2]/div[1]/form/div[6]/div/div/button")
-    private WebElement findbutton;
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // 10 секунд
+    private WebElement findButton;
 
-    private void waitElIsCl(WebElement element ){
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-    } // 10 секунд
 
-    private void waitElIsVi(WebElement element ){
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
-     public void capcha_Button(){
-        waitElIsCl(capchaButton);
+     public void capchaButtonClick(){
+        waitClickable(capchaButton);
         capchaButton.click();
     }
 
     public AdvancedSearch upPriceSet(String prize){
-        waitElIsVi(up_price);
-        up_price.sendKeys(prize);
+        waitVisible(upPrice);
+        upPrice.sendKeys(prize);
         return this;
     }
 
@@ -48,9 +42,9 @@ public class AdvancedSearch extends BaseSeleniumPage {
         return driver.getCurrentUrl();
     }
 
-    public ListOfCars list_of_cars(){
-        waitElIsCl(findbutton);
-        findbutton.click();
+    public ListOfCars listOfCarsClick(){
+        waitClickable(findButton);
+        findButton.click();
         return new ListOfCars();
     }
 }

@@ -3,7 +3,9 @@ package core;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.time.Duration;
 
@@ -18,12 +20,14 @@ abstract public class BaseSeleniumTest {
         driver.manage()
                 .timeouts()
                 .pageLoadTimeout(Duration.ofSeconds(10));
-
+        driver.get("https://auto.ria.com/uk/");
         driver.manage()
                 .timeouts()
                 .implicitlyWait(Duration.ofSeconds(10));
-
+        driver.manage().window().maximize();
         BaseSeleniumPage.setDriver(driver);
+
+
     }
 
     @After
