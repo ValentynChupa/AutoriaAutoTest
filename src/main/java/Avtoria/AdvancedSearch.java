@@ -20,7 +20,7 @@ public class AdvancedSearch extends BaseSeleniumPage {
     @FindBy(xpath = "//*[@id=\"gdpr-notifier\"]/div[1]/div[2]/label[1]")
     private WebElement capchaButton;
 
-    @FindBy(xpath = "//*[@id=\"at_price-to\"]")
+    @FindBy(id = "at_price-to")
     private WebElement upPrice;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[2]/div[1]/form/div[6]/div/div/button")
@@ -28,14 +28,17 @@ public class AdvancedSearch extends BaseSeleniumPage {
 
 
      public void capchaButtonClick(){
-        waitClickable(capchaButton);
-        capchaButton.click();
+        if(safeClick(capchaButton, "кнопка капчі не знайдена")) {
+            capchaButton.click();
+        }
     }
 
     public AdvancedSearch upPriceSet(String prize){
-        waitVisible(upPrice);
-        upPrice.sendKeys(prize);
-        return this;
+        if(safeClick(upPrice,"Поле upPrize не знайдено")){
+            upPrice.sendKeys(prize);
+            return this;
+        }
+        return null;
     }
 
     public  String getCurrentURL(){
@@ -43,8 +46,10 @@ public class AdvancedSearch extends BaseSeleniumPage {
     }
 
     public ListOfCars listOfCarsClick(){
-        waitClickable(findButton);
-        findButton.click();
-        return new ListOfCars();
+        if(safeClick(findButton,"Кнопки пошуку незнайдено")) {
+            findButton.click();
+            return new ListOfCars();
+        }
+        return null;
     }
 }

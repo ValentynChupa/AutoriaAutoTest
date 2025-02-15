@@ -27,21 +27,23 @@ public class MainPage extends BaseSeleniumPage {
         PageFactory.initElements(driver, this);
      }
 
-     public AdvancedSearch clickAdvancedSearch() {
-         waitVisible(fullSearch);
-         fullSearch.click();
-         return new AdvancedSearch(driver);
-     }
-
-     public LoginPage clickLoginButton(){
-        waitClickable(loginButton);
-         loginButton.click();
-         return new LoginPage(driver);
-     }
-
-    public  String getCurrentURL(){
-        return driver.getCurrentUrl();
+    public AdvancedSearch clickAdvancedSearch() {
+        if (safeClick(fullSearch, "Кнопка розширеного пошуку")) {
+            System.out.println("Кнопка розширеного пошуку натиснута");
+            return new AdvancedSearch(driver);
+        }
+        return null;
     }
 
+    public LoginPage clickLoginButton() {
+        if (safeClick(loginButton, "Кнопка входу")) {
+            System.out.println("Кнопка входу натиснута");
+            return new LoginPage(driver);
+        }
+        return null;
+    }
 
+    public String getCurrentURL() {
+        return driver.getCurrentUrl();
+    }
 }

@@ -42,7 +42,7 @@ public class MainPageTest extends BaseSeleniumTest {
     @Test
     public void loginAtemp(){
        LoginPage loginPage = new MainPage(driver).clickLoginButton();
-       loginPage.capchaButtonClick();
-       loginPage.fillEmailField();
+       loginPage.captchaButtonClick();
+       loginPage.fillEmailField("111");
     }
 }
