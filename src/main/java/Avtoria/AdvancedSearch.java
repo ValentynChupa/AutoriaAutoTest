@@ -29,13 +29,11 @@ public class AdvancedSearch extends BaseSeleniumPage {
 
      public void capchaButtonClick(){
         if(safeClick(capchaButton, "кнопка капчі не знайдена")) {
-            capchaButton.click();
         }
     }
 
     public AdvancedSearch upPriceSet(String prize){
-        if(safeClick(upPrice,"Поле upPrize не знайдено")){
-            upPrice.sendKeys(prize);
+        if(safeSendKeys(upPrice,prize,"upPrize")){
             return this;
         }
         return null;

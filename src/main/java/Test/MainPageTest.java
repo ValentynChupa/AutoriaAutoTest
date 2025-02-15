@@ -32,7 +32,7 @@ public class MainPageTest extends BaseSeleniumTest {
         String advancetSearchUrl= new AdvancedSearch(driver)
                 .listOfCarsClick()
                 .getCurrentURL();
-
+        System.out.println(advancetSearchUrl);
         Assert.assertEquals(
                 "https://auto.ria.com/uk/advanced-search/?categories.main.id=1&indexName=auto,order_auto,newauto_search",
                 advancetSearchUrl
@@ -44,5 +44,6 @@ public class MainPageTest extends BaseSeleniumTest {
        LoginPage loginPage = new MainPage(driver).clickLoginButton();
        loginPage.captchaButtonClick();
        loginPage.fillEmailField("111");
+
     }
 }
