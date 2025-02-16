@@ -10,6 +10,7 @@ public class ListOfCars extends BaseSeleniumPage {
     }
 
     public  String getCurrentURL(){
+        waidLoadFinish();
         return driver.getCurrentUrl();
     }
 }

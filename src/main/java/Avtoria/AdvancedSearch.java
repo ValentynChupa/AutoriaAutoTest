@@ -26,14 +26,15 @@ public class AdvancedSearch extends BaseSeleniumPage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[2]/div[1]/form/div[6]/div/div/button")
     private WebElement findButton;
 
-
      public void capchaButtonClick(){
         if(safeClick(capchaButton, "кнопка капчі не знайдена")) {
+            System.out.println("Кнопку капчі знайдено");
         }
     }
 
     public AdvancedSearch upPriceSet(String prize){
         if(safeSendKeys(upPrice,prize,"upPrize")){
+            System.out.println("Ціну встановлено");
             return this;
         }
         return null;
@@ -46,6 +47,7 @@ public class AdvancedSearch extends BaseSeleniumPage {
     public ListOfCars listOfCarsClick(){
         if(safeClick(findButton,"Кнопки пошуку незнайдено")) {
             findButton.click();
+            System.out.println("Кнопку пошуку натиснуто");
             return new ListOfCars();
         }
         return null;

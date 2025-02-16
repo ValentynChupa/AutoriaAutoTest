@@ -20,8 +20,6 @@ public class MainPage extends BaseSeleniumPage {
     @FindBy(css = "#bu-desktop-header > div.app-head > div > div > a:nth-child(4) > span")
     private WebElement loginButton;
 
-
-
     public MainPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);

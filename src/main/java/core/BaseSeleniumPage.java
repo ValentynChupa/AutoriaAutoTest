@@ -1,9 +1,6 @@
 package core;
 
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,6 +15,11 @@ abstract public class BaseSeleniumPage {
 
     }
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // 10 секунд
+
+    public void waidLoadFinish(){
+        wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+
+    }
 
     public void waitVisible(WebElement element) {
         new WebDriverWait(driver, Duration.ofSeconds(10))
