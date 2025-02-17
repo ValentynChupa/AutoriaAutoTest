@@ -44,12 +44,16 @@ public class AdvancedSearch extends BaseSeleniumPage {
         return driver.getCurrentUrl();
     }
 
-    public ListOfCars listOfCarsClick(){
-        if(safeClick(findButton,"Кнопки пошуку незнайдено")) {
-            findButton.click();
-            System.out.println("Кнопку пошуку натиснуто");
-            return new ListOfCars();
+    public ListOfCars listOfCarsClick() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+            WebElement findButtonVisible = wait.until(ExpectedConditions.elementToBeClickable(findButton));
+            findButtonVisible.click();
+            System.out.println("SearchButton is clicked");
+            return new ListOfCars(driver);
+        } catch (Exception e) {
+            System.out.println("SearchButton has not found: " + e.getMessage());
+            return null;
         }
-        return null;
     }
 }

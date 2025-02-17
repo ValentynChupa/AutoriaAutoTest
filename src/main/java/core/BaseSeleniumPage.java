@@ -29,6 +29,7 @@ abstract public class BaseSeleniumPage {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(element));
     }
+
     public boolean safeClick(WebElement element, String elementName) {
         try {
             waitClickable(element);
