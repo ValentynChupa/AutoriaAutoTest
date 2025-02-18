@@ -1,6 +1,6 @@
-package Avtoria;
+package avtoria.advancedsearch.searchpage;
 
-import core.BaseSeleniumPage;
+import base.pages.BaseSeleniumPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ListOfCars extends BaseSeleniumPage {
-    public ListOfCars(WebDriver driver) {
+public class SearchPage extends BaseSeleniumPage {
+    public SearchPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
 
@@ -23,7 +23,7 @@ public class ListOfCars extends BaseSeleniumPage {
 
             return driver.getCurrentUrl();
         } catch (Exception e) {
-            System.out.println("Помилка при отриманні URL: " + e.getMessage());
+            System.out.println("Error on getting url: " + e.getMessage());
             return "";
         }
     }

@@ -1,6 +1,8 @@
-package Avtoria;
+package avtoria.mainpage;
 
-import core.BaseSeleniumPage;
+import avtoria.advancedsearch.AdvancedSearch;
+import avtoria.auth.LoginPage;
+import base.pages.BaseSeleniumPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,16 +28,16 @@ public class MainPage extends BaseSeleniumPage {
      }
 
     public AdvancedSearch clickAdvancedSearch() {
-        if (safeClick(fullSearch, "Кнопка розширеного пошуку")) {
-            System.out.println("Кнопка розширеного пошуку натиснута");
+        if (safeClick(fullSearch, "Advanced search button")) {
+            System.out.println("Advanced search button clicked");
             return new AdvancedSearch(driver);
         }
         return null;
     }
 
     public LoginPage clickLoginButton() {
-        if (safeClick(loginButton, "Кнопка входу")) {
-            System.out.println("Кнопка входу натиснута");
+        if (safeClick(loginButton, "login button")) {
+            System.out.println("Login button clicled");
             return new LoginPage(driver);
         }
         return null;

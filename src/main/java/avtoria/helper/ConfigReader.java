@@ -1,4 +1,4 @@
-package Avtoria;
+package avtoria.helper;
 
 import java.io.FileInputStream;
 import java.io.IOException;

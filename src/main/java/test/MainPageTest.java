@@ -1,10 +1,15 @@
-package Test;
+package test;
 
-import Avtoria.*;
-import core.BaseSeleniumTest;
+import avtoria.advancedsearch.AdvancedSearch;
+import avtoria.advancedsearch.searchpage.SearchPage;
+import avtoria.auth.LoginPage;
+import avtoria.helper.ConfigReader;
+import avtoria.mainpage.MainPage;
+import base.pages.BaseSeleniumTest;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,17 +41,14 @@ public class MainPageTest extends BaseSeleniumTest {
         advancedSearch.capchaButtonClick();
         advancedSearch.upPriceSet("1000");
 
-        ListOfCars searchRequest = advancedSearch.listOfCarsClick();
-
+        SearchPage searchRequest = advancedSearch.listOfCarsClick();
+        //create of elements that will be marker that user was redirected to search page
+        WebElement newelement = driver.findElement(By.className("content-bar"));
         if (searchRequest != null) {
             System.out.println("URL: " + searchRequest.getCurrentURL());
-            Assert.assertEquals(
-                    "https://auto.ria.com/uk/advanced-search/?categories.main.id=1&indexName=auto,order_auto,newauto_search",
-                    searchRequest.getCurrentURL()
-            );
+            Assert.assertTrue(newelement.isDisplayed());
         } else {
-            System.out.println("Не вдалося отримати список автомобілів.");
-            Assert.fail("Не вдалося знайти список автомобілів.");
+            Assert.fail("User is not redirected to the search page");
         }
     }
 

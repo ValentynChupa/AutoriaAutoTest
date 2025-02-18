@@ -1,6 +1,6 @@
-package Avtoria;
+package avtoria.auth;
 
-import core.BaseSeleniumPage;
+import base.pages.BaseSeleniumPage;
 
 
 import org.openqa.selenium.WebDriver;
@@ -29,8 +29,8 @@ public class LoginPage extends BaseSeleniumPage {
 
     public void fillEmailField(String email) {
         driver.switchTo().frame(0);
-       if (safeSendKeys(emailField, email, "Поле email")) {
-            System.out.println("Email введено успішно.");
+       if (safeSendKeys(emailField, email, "Email field")) {
+            System.out.println("Email filled");
             driver.switchTo().defaultContent();
         }
 
@@ -38,7 +38,7 @@ public class LoginPage extends BaseSeleniumPage {
 
     public void fillPasswordField(String password) {
         driver.switchTo().frame(0);
-        if (safeSendKeys(passwordField, password, "Поле email")) {
+        if (safeSendKeys(passwordField, password, "Password field")) {
             driver.switchTo().defaultContent();
         }
 
@@ -46,15 +46,15 @@ public class LoginPage extends BaseSeleniumPage {
 
     public void clickLoginButton() {
         driver.switchTo().frame(0);
-        if (safeClick(loginButton,"кнопка логіну")) {
+        if (safeClick(loginButton,"Login button")) {
             driver.switchTo().defaultContent();
         }
 
     }
 
     public void captchaButtonClick() {
-        if (safeClick(captchaButton, "Кнопка капчі")) {
-            System.out.println("Капча натиснута успішно.");
+        if (safeClick(captchaButton, "Capcha button")) {
+            System.out.println("Capcha button is clicked");
         }
     }
 }

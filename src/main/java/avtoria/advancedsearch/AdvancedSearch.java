@@ -1,6 +1,7 @@
-package Avtoria;
+package avtoria.advancedsearch;
 
-import core.BaseSeleniumPage;
+import avtoria.advancedsearch.searchpage.SearchPage;
+import base.pages.BaseSeleniumPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,14 +28,14 @@ public class AdvancedSearch extends BaseSeleniumPage {
     private WebElement findButton;
 
      public void capchaButtonClick(){
-        if(safeClick(capchaButton, "кнопка капчі не знайдена")) {
-            System.out.println("Кнопку капчі знайдено");
+        if(safeClick(capchaButton, "Capcha button has not found")) {
+            System.out.println("Capcha button clicked");
         }
     }
 
     public AdvancedSearch upPriceSet(String prize){
         if(safeSendKeys(upPrice,prize,"upPrize")){
-            System.out.println("Ціну встановлено");
+            System.out.println("Prize field is filled");
             return this;
         }
         return null;
@@ -44,13 +45,13 @@ public class AdvancedSearch extends BaseSeleniumPage {
         return driver.getCurrentUrl();
     }
 
-    public ListOfCars listOfCarsClick() {
+    public SearchPage listOfCarsClick() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             WebElement findButtonVisible = wait.until(ExpectedConditions.elementToBeClickable(findButton));
             findButtonVisible.click();
             System.out.println("SearchButton is clicked");
-            return new ListOfCars(driver);
+            return new SearchPage(driver);
         } catch (Exception e) {
             System.out.println("SearchButton has not found: " + e.getMessage());
             return null;
