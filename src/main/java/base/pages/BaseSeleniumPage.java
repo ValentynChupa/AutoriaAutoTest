@@ -16,7 +16,7 @@ abstract public class BaseSeleniumPage {
     }
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // 10 секунд
 
-    public void waidLoadFinish(){
+    public void waitLoadFinish(){
         wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
 
     }
@@ -36,9 +36,9 @@ abstract public class BaseSeleniumPage {
             element.click();
             return true;
         } catch (NoSuchElementException e) {
-            System.out.println("Помилка: " + elementName + " не знайдено!");
+            System.out.println("Error: " + elementName + " have not found!");
         } catch (TimeoutException e) {
-            System.out.println("Помилка: " + elementName + " не стала доступною вчасно!");
+            System.out.println("Error: " + elementName + " is not visible in time!");
         }
         return false;
     }
@@ -49,12 +49,11 @@ abstract public class BaseSeleniumPage {
             wait.until(ExpectedConditions.visibilityOf(element)); // Очікуємо, поки поле стане видимим
             element.clear(); // Очищаємо поле перед введенням тексту
             element.sendKeys(text);
-            System.out.println("✅ Успішно ввели текст у " + elementName + ": " + text);
             return true;
         } catch (NoSuchElementException e) {
-            System.out.println("❌ Помилка: " + elementName + " не знайдено!");
+            System.out.println("❌ Error: " + elementName + " the element was not found!");
         } catch (TimeoutException e) {
-            System.out.println("⏳ Помилка: " + elementName + " не стало доступним вчасно!");
+            System.out.println("⏳ Error: " + elementName + " has not found in Time!");
         }
         return false;
     }

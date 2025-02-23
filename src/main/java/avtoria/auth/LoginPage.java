@@ -30,8 +30,7 @@ public class LoginPage extends BaseSeleniumPage {
     public void fillEmailField(String email) {
         driver.switchTo().frame(0);
        if (safeSendKeys(emailField, email, "Email field")) {
-            System.out.println("Email filled");
-            driver.switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         }
 
     }
@@ -54,7 +53,6 @@ public class LoginPage extends BaseSeleniumPage {
 
     public void captchaButtonClick() {
         if (safeClick(captchaButton, "Capcha button")) {
-            System.out.println("Capcha button is clicked");
         }
     }
 }

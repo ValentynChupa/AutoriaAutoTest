@@ -27,34 +27,31 @@ public class AdvancedSearch extends BaseSeleniumPage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[2]/div[1]/form/div[6]/div/div/button")
     private WebElement findButton;
 
-     public void capchaButtonClick(){
-        if(safeClick(capchaButton, "Capcha button has not found")) {
+    public void capchaButtonClick() {
+        if (safeClick(capchaButton, "Capcha button has not found")) {
             System.out.println("Capcha button clicked");
         }
     }
 
-    public AdvancedSearch upPriceSet(String prize){
-        if(safeSendKeys(upPrice,prize,"upPrize")){
+    public AdvancedSearch upPriceSet(String prize) {
+        if (safeSendKeys(upPrice, prize, "upPrize")) {
             System.out.println("Prize field is filled");
             return this;
         }
         return null;
     }
 
-    public  String getCurrentURL(){
+    public String getCurrentURL() {
         return driver.getCurrentUrl();
     }
 
     public SearchPage listOfCarsClick() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        try {
-            WebElement findButtonVisible = wait.until(ExpectedConditions.elementToBeClickable(findButton));
-            findButtonVisible.click();
-            System.out.println("SearchButton is clicked");
+
+        if (safeClick(findButton, "FindButton")) {
             return new SearchPage(driver);
-        } catch (Exception e) {
-            System.out.println("SearchButton has not found: " + e.getMessage());
-            return null;
         }
+        return null;
+
     }
 }
+
